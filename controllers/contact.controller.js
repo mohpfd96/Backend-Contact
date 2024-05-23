@@ -2,7 +2,9 @@ const Contact = require("../models/contact.model");
 
 exports.createContact = async (req, res) => {
   try {
-    const contact = new Contact(req.body);
+    let data = { ...req.body, userId: req.params.userId };
+    console.log(data);
+    const contact = new Contact(data);
     await contact.save();
     res
       .status(201)
