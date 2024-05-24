@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const contactController = require("../controllers/contact.controller");
 
+//api/contacts
 router.post("/:userId", contactController.createContact);
 router.get("/:userId", contactController.getContacts);
 router.get("/", contactController.getAllContacts); //admin

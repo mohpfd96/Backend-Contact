@@ -71,7 +71,6 @@ exports.getContacts = async (req, res) => {
 exports.getAllContacts = async (req, res) => {
   try {
     const contacts = await Contact.find({});
-    console.log(contacts);
     res.send({ message: "Contacts retrieved successfully", data: contacts });
   } catch (err) {
     res.status(500).send({ message: "Error retrieving contacts", data: err });
