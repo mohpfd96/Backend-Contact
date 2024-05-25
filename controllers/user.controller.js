@@ -4,11 +4,11 @@ exports.createUser = async (req, res) => {
   try {
     const user = new User(req.body);
     await user.save();
-    res.status(201).send({ message: "User created successfully", data: user });
+    res.status(201).send({ message: "User Created! ", data: user });
   } catch (error) {
     res
       .status(400)
-      .send({ message: "Invalid Username or Email or Password.", data: error });
+      .send({ message: "Invalid Username / Email / Password!", data: error });
   }
 };
 
@@ -19,11 +19,11 @@ exports.updateUser = async (req, res) => {
       runValidators: true,
     });
     if (!user) {
-      return res.status(404).send({ message: "User not found", data: null });
+      return res.status(404).send({ message: "User Not Found!", data: null });
     }
-    res.send({ message: "User updated successfully", data: user });
+    res.send({ message: "User Updated!", data: user });
   } catch (error) {
-    res.status(400).send({ message: "User update failed", data: error });
+    res.status(400).send({ message: "Fail Update User!", data: error });
   }
 };
 
@@ -31,11 +31,11 @@ exports.deleteUser = async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
     if (!user) {
-      return res.status(404).send({ message: "User not found", data: null });
+      return res.status(404).send({ message: "User Not Found!", data: null });
     }
-    res.send({ message: "User deleted successfully", data: user });
+    res.send({ message: "User Deleted!", data: user });
   } catch (error) {
-    res.status(500).send({ message: "Error deleting user", data: error });
+    res.status(500).send({ message: "Error Deleting User!", data: error });
   }
 };
 exports.findUser = async (req, res) => {
@@ -48,10 +48,10 @@ exports.findUser = async (req, res) => {
     } else {
       res
         .status(401)
-        .json({ message: "Invalid Email or Password", data: null });
+        .json({ message: "Invalid Email / Password!", data: null });
     }
   } catch (error) {
-    res.status(500).json({ message: "Internal server error", data: error });
+    res.status(500).json({ message: "Internal Server Error!", data: error });
   }
 };
 
@@ -59,19 +59,19 @@ exports.getUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) {
-      return res.status(404).send({ message: "User not found", data: null });
+      return res.status(404).send({ message: "User Not Found!", data: null });
     }
-    res.send({ message: "User retrieved successfully", data: user });
+    res.send({ message: "User Found!", data: user });
   } catch (error) {
-    res.status(500).send({ message: "Error retrieving user", data: error });
+    res.status(500).send({ message: "Error Getting User!", data: error });
   }
 };
 
 exports.getUsers = async (req, res) => {
   try {
     const users = await User.find({});
-    res.send({ message: "Users retrieved successfully", data: users });
+    res.send({ message: "User Found!", data: users });
   } catch (error) {
-    res.status(500).send({ message: "Error retrieving users", data: error });
+    res.status(500).send({ message: "Error Getting User!", data: error });
   }
 };

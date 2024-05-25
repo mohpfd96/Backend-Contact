@@ -8,7 +8,7 @@ handleGoogleAuth = async (req, res) => {
   try {
     const decodedToken = jwt.decode(idToken);
     if (!decodedToken) {
-      return res.status(400).json({ message: "Invalid ID token", data: {} });
+      return res.status(400).json({ message: "Invalid ID Token!", data: {} });
     }
 
     const googleUserId = decodedToken.sub;
@@ -22,7 +22,7 @@ handleGoogleAuth = async (req, res) => {
       user = new User({
         username,
         email,
-        password: "GoogleUser",
+        password: "GoogleUser", //Can be something like token or ...
         googleUser: true,
         profileImage,
       });
@@ -31,12 +31,12 @@ handleGoogleAuth = async (req, res) => {
 
     res
       .status(200)
-      .json({ message: "User authenticated successfully", data: user });
+      .json({ message: "User Login with Google Successfully!", data: user });
   } catch (error) {
     console.log(1);
     res
       .status(500)
-      .json({ message: "Error handling Google authentication", data: error });
+      .json({ message: "Error handling Google Authentication!", data: error });
   }
 };
 module.exports = handleGoogleAuth;
